@@ -33,3 +33,35 @@ You are probably thinking - well this seems impossible. But because we tell comp
 |4|100|
 |5|101|
 |6|110|
+|7|111|
+|8|1000|
+|9|1001|
+|10|1010|
+|11|1011|
+
+OK so we can represent numbers. But what about text?
+
+To solve that problem, [ASCII](https://en.wikipedia.org/wiki/ASCII) was developed. All ASCII is a mapping from numbers to latin characters (i.e. our english letters). So numbers in a context where the computer "knows" that it should be reading/writing letters, it can read/write certain numbers and know that it means a certain letter. 
+
+For example: your computer wants to represnet the phrase "Hello World". How does it do that?
+
+|Letter| Decimal| Binary|
+|------|--------|-------|
+|H|72|0100 1000|
+|e|101| 0110 0101|
+|l|108| 0110 1100|
+|o| 111| 0110 1111|
+| (space)| 32| 0010 0000|
+|W| 87| 0101 0111|
+|r| 114 | 0111 0010|
+|d| 100 | 0110 0100|
+
+
+So, "Hello World" is equivalent (in decimal) to `72 101 108 108 111 32 87 111 114 108 100`, or in binary: `0100 1000 0110 0101 0110 1100 0110 1100 0110 0110 1111 0010 0000 0101 0111 0110 1111 0111 0010 0110 1100 0110 0100` which is nice and spaced out for us, but the computer just does: `0100100001100101011011000110110001100110 1111001000000101011101101111011100100110110001100100`, and as long as it knows how long the `string` is, it will know exactly what this means.
+
+
+Ok, so we can represent numbers and `strings` with 0s and 1s, great. This is mostly to help humans interface with computers. How do we request a web page from that google computer?
+
+To solve this, Hypertext Transfer Protocol ([HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol)) was created. 
+
+All HTTP does is define a set of rules for a computer to put certain letters in certain places so that the receiving computer will know exactly what is being asked of it (or what it is being told). 
