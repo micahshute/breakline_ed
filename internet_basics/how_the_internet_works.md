@@ -18,7 +18,9 @@ Ok, so here are some problems we have to solve:
 5. Turning all of the data into a visual respresentation on your screen
 
 
-I think that this covers the basic problems we have to solve. Let's start by skipping a little bit ahead and focusing on step 4. 
+I think that this covers the basic problems we have to solve. 
+
+Let's start by skipping a little bit ahead and focusing on step 4. 
 
 When two humans communicate, we have to use the tools that we have in order to convey information to another human in a way that they understand. To achieve this, we have developed a set of "rules" (a.k.a. a `protocol`) that allows us to easily communicate with one another. This is done via language. Right now, because I am following the rules described by the English language, I am able to put symbols on a page that you are able to read and understand. The same must be true for computers. Instead of having the ability to speak or write, however, computers have to use the tools available to them in order to communicate. Due to the nature of the constructions of computer "brains", this must ALL be done by a series of 1s and 0s. Computers think and speak in `binary`, as they are only able to represent these two distinct values. 
 
@@ -65,3 +67,28 @@ Ok, so we can represent numbers and `strings` with 0s and 1s, great. This is mos
 To solve this, Hypertext Transfer Protocol ([HTTP](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol)) was created. 
 
 All HTTP does is define a set of rules for a computer to put certain letters in certain places so that the receiving computer will know exactly what is being asked of it (or what it is being told). 
+
+These rules are made so it's easy for humans to write, and so that computers can follow simple rules to understand it too. HTTP request are simply a set of characters (text) that define the specifics of the message, broken up by spaces, carriage returns (`\r`) and "new line" characters (`\n`). 
+
+
+![HTTP packet](./http_packet.png)
+
+So the computer can tell the `method`, for example, by reading characters until it hits a space (which as we know is the number `32` or `0010 0000` in binary)
+
+Here's what a simplified version of our  request to google.com will look like in real life:
+
+
+```
+GET / HTTP/1.1\r\n
+```
+
+The `method` (described below) is a GET request, the google URL we are asking for is their homepage, or `/`, and the version is `HTTP/1.1`. We did not include any headers or a body, so this is all that is needed to get the google homepage back! The computer can `parse` this information because it knows in what order to expect the method, URL, and version, and when spaces or carriage returns (`\r`) or newline characters (`\n`) are expected to separate different pieces of information.
+
+On a "computer-to-computer" level, this is all turned into binary, which is what the computer is "sending" across the internet - starting as electrical pulses in the computer, and being transformed to electromagnetic waves as it goes through the air in your wifi network, and then again becoming electrical pulses or light pulses as it propagates through the wires and fiberoptic cables which make up the internet.
+
+When google recieves this request, they will respond by return the `HTML` (Hypertext Markup Language) that defines their homepage. This will be in the `body` portion of their HTTP response. HTML is simply text which tells a browser how to visually display something. If I want a browser to disp
+
+**Try it**: If you are on a Mac or Linux machine, open up your terminal and type `curl www.google.com`. This will send an HTTP GET request and you should see a bunch of HTML printed out in your terminal. This is the same text that your browser turns into a nice visual Google homepage for you!
+
+**Advanced Try It**: If you are on a Linux machine or you have telnet installed, you can write out the actual HTTP request by running `telnet` and then `o www.google.com`. Once connected, write out your HTTP request, using the `enter` key instead of the `\r\n` line endings. Once you click enter twice, it will send the request and you should get the same response as the `curl` request. 
+
