@@ -61,7 +61,7 @@ For example: your computer wants to represnet the phrase "Hello World". How does
 
 So, "Hello World" is equivalent (in decimal) to `72 101 108 108 111 32 87 111 114 108 100`, or in binary: `0100 1000 0110 0101 0110 1100 0110 1100 0110 0110 1111 0010 0000 0101 0111 0110 1111 0111 0010 0110 1100 0110 0100` which is nice and spaced out for us, but the computer just does: `0100100001100101011011000110110001100110 1111001000000101011101101111011100100110110001100100`, and as long as it knows how long the `string` is, it will know exactly what this means.
 
-*NOTE:* You will probably hear about unicode, which is the modern, expanded version to do what ASCII did in the past. It is the same concept with a slightly different implementation to be able to represent more characters than ASCII can.
+*NOTE:* You will probably hear about `unicode`, which is the modern, expanded version to do what ASCII did in the past. It is the same concept with a slightly different implementation to be able to represent more characters than ASCII can.
 
 Ok, so we can represent numbers and `strings` with 0s and 1s, great. This is mostly to help humans interface with computers. How do we request a web page from that google computer?
 
