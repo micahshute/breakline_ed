@@ -87,7 +87,7 @@ The `method` (described below) is a GET request, the google URL we are asking fo
 
 On a "computer-to-computer" level, this is all turned into binary, which is what the computer is "sending" across the internet - starting as electrical pulses in the computer, and being transformed to electromagnetic waves as it goes through the air in your wifi network, and then again becoming electrical pulses or light pulses as it propagates through the wires and fiberoptic cables which make up the internet.
 
-When google recieves this request, they will respond by return the `HTML` (Hypertext Markup Language) that defines their homepage. This will be in the `body` portion of their HTTP response. HTML is simply text which tells a browser how to visually display something. If I want a browser to display text in a bold, large manner (i.e. as a "header"), the HTML would look like this: 
+When google recieves this request, they will respond by return the `HTML` (Hypertext Markup Language) that defines their homepage. This will be in the `body` portion of their HTTP response. HTML is simply text which tells a browser how to visually display something. If I want a browser to display the text `Hello World` in a bold, large manner (i.e. as a `header`), the HTML would look like this: 
 
 ```html
 <h1>Hello World</h1>
