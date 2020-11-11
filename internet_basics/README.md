@@ -101,7 +101,7 @@ HTML is just text, but the browser knows to not actually display the `tags` (i.e
 
 In the supplimental video, I will demonstrate more of this in-browser.
 
-So we've talked about GET, but what does that actually mean? What other methods are there? Learn more about HTTP in the [HTTP](./http.md) lesson!
+So we've talked about GET, but what does that actually mean? What other methods are there? Learn more about HTTP in the [HTTP lesson!](./http.md)
 
 But for now let's move on to our other high-level problems. We have actually solved both 4 and 5. 4 was solved with HTTP, and 5 was solved with HTML and the browser's ability to turn into visuals for us. 
 
