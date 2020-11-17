@@ -3,7 +3,6 @@
 The internet in our lives to day is a taken-for-granted abstraction of communication between computers worldwide. Let's peel back the layers and try to understand some of the fundamental concepts that are the building blocks to this communication. If you research this yourself, you will find protocol layers and buzzwords that may make it hard to understand at first. The goal here is to attack the problem by breaking it down into its base elements and reverse engineering it as if we were designing the internet ourselves. Hopefully, this will give you a base understanding that will allow you to better digest resources that you research for yourselves in the future. 
 
 
-
 Let's start simple. You open your browser and type in www.google.com. In a few seconds, you see the google homepage. What just happened?
 
 Well, before we answer that, I want you to think about what you think would have to happen to make this work. Pretend you live in a world where the internet does not exist. You want to be able to get information to your computer from a computer that Google owns that is sitting in San Fransisco just by typing in "www.google.com" into your browser. What problems must you solve? Try to think about it a little before moving on.
@@ -113,3 +112,14 @@ To recap:
 2. Physically sending a request for information from your computer to the location of the Google computer
 3. Making sure that all of the communication between the two computers makes it to its destination
 
+Now let's start at the beginning. How do we get this specially-formed HTTP request from our computer to the Google computer? The answer is with another set of rules of course! Like we discussed before, in tech a set of rules which govern something is called a `protocol`. This `protocol` is called `Internet Protocol` (`IP`). You can think of `IP` as the postal service of the internet. Every computer connected to the web gets an address. 
+
+**NOTE:** We will be discussing IPv4 (version 4), although the internet is transitioning to IPv6 (version 6). The only difference in the broad strokes is that there are many more available addresses in v6, as we were running out in v4. 
+
+So when you connect to the internet, you get an address, like 73.93.134.211. In upcoming examples, we will use this address as "your" address as you send information to Google.
+
+Google will have an address too, like 216.58.195.68.
+
+When you want to send your `HTTP` request from your address to Google, `Internet Protocol` (`IP`) will be the rules that are followed by your computer and intermediate `hops` along the way to allow your request to make it from your computer to Google's computer. When you want to send an `HTTP` request, you put the entire HTTP packet (described above) into an `IP` packet which holds the information of who is sending the packet (73.93.134.211) and where the packet is going (216.58.195.68). You can think of this `IP` packet as the envelope in which you put your `HTTP` packet. To aid this journey, there are physical components in the internet owned by `Internet Service Providers` (`ISPs`) called `routers`. These `routers` will read the `IP` "envelope", and send along your request to another router that is closer to Google's server, until you finally get to a router that can send your request directly to Google's server. 
+
+To learn more about `IP`, [continue reading here.](./ip.md)
