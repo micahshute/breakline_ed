@@ -120,6 +120,28 @@ So when you connect to the internet, you get an address, like 73.93.134.211. In 
 
 Google will have an address too, like 216.58.195.68.
 
-When you want to send your `HTTP` request from your address to Google, `Internet Protocol` (`IP`) will be the rules that are followed by your computer and intermediate `hops` along the way to allow your request to make it from your computer to Google's computer. When you want to send an `HTTP` request, you put the entire HTTP packet (described above) into an `IP` packet which holds the information of who is sending the packet (73.93.134.211) and where the packet is going (216.58.195.68). You can think of this `IP` packet as the envelope in which you put your `HTTP` packet. To aid this journey, there are physical components in the internet owned by `Internet Service Providers` (`ISPs`) called `routers`. These `routers` will read the `IP` "envelope", and send along your request to another router that is closer to Google's server, until you finally get to a router that can send your request directly to Google's server. 
+Wait so how does your computer know that `www.google.com` should be sent to 216.58.195.68? That is where Domain Name System (DNS) comes in. There are servers specifically used to answer the question "what IP address do I go to for this url?". Your computer has a local `cache` (saved memory) of these key-value pairs of domains to IP addresses. But if it doesn't know it (because you haven't visited that site before), it will send off a request to a DNS server which does (there are a lot of DNS servers, but ultimately there is a heirarchy that starts off at the "root" server, which points to ".com", or ".gov", or ".edu", etc DNS servers, each of which should know all the domains they are in charge of). Once your computer gets back a response from the DNS server that knows the IP address of your query, you finally know where your packet needs to go and it can be sent. 
+
+To learn more about `DNS`, [continue reading here.](./dns.md)
+
+When you want to send your `HTTP` request from your address to Google, `Internet Protocol` (`IP`) will be the rules that are followed by your computer and intermediate `hops` along the way to allow your request to make it from your computer to Google's computer. When you want to send an `HTTP` request, you put the entire HTTP packet (described above) into an `IP` packet which holds the information of who is sending the packet (73.93.134.211) and where the packet is going (216.58.195.68). You can think of this `IP` packet as the envelope in which you put your `HTTP` packet. 
+
+Here is what your IP packet looks like:
+
+
+ADD IP PACKET IMAGE HERE
+
+
+To aid this journey, there are physical components in the internet owned by `Internet Service Providers` (`ISPs`) (e.g. Comcast, Verizon) called `routers`. These `routers` will read the `IP` "envelope", and send along your request to another router that is closer to Google's server, until you finally get to a router that can send your request directly to Google's server. 
 
 To learn more about `IP`, [continue reading here.](./ip.md)
+
+So, we've solved (1) and (2) by assigning computers connected to the internet with unique IP addresses, relating an IP address to a `domain name` (findable via `DNS`), and using Internet Protocol to let packages be sent via a series of ISP-owned routers from your computer to Google's and back.
+
+The only thing left to do is to somehow verify that your message to Google and the response are correctly recieved by all parties. This is complicated by the fact that our IP `packets` (envelopes) are limited in size, so sometimes a single request or response are broken up into multiple IP `packets`, which have to be processed in order for them to make sense. The problem is, since the internet is not a point-to-point connection (there are multiple ways for your packet to get from your computer to Google's server), and sometimes routers can "drop" packets, it is very possible for portions of your request to Google to be recieved in the wrong order or not at all. That problem is solved with Transmission Control Protocol (TCP). TCP is in charge of making sure that all packages are delivered. The packets in your TCP request
+
+To learn more about `TCP`, [continue reading here](./tcp.md)
+
+**Big abstract picture:** Your computer has its HTTP request it wants to send (the letter). It rips up that letter so it can fit in your envelopes. Each segment (packet) get puts in a TCP envelope, which has information like the segment number, and the destination and source port. Then each TCP envelope gets put into an IP envelope, which has the sender and destination IP address. Your computer tosses those envelopes into "the internet", where the routers look at the IP envelope to decide how to get it to the destination address. Once the Google server has that package, it opens it up to find the TCP envelope. It uses the information here to make sure it gets every part (packet) sent by you. Once that is confirmed, it opens all of them, puts the HTTP request together, and sends them to the `port` the web server is running on -- the web server will then determine what you are asking and what it should return. The HTTP response undergoes the same process in Google's server that your request did on your computer, and eventually your computer recieves that response (after IP and TCP have done their jobs), and displays the HTML body of the request to your browser.
+
+
